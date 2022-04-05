@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ city.name }} {% endblock %}
+
+{% block content %}
+{{ city.name }} news
+<hr>
+{% for new in news %}
+    <h3>{{ new.title }}</h3>
+    <img style="width: 500px;" src="{{ new.image.url }}">
+    <p>{{ new.description }}</p>
+    <p>{{ new.created }}</p>
+    <hr>
+{% endfor %}
+
+{% endblock %}

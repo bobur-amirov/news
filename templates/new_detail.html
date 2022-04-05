@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ new.title }} {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-3">
+
+        </div>
+        <div class="col-lg-6">
+            <h3>{{ new.title }}</h3>
+            <img style="width: 650px;" src="{{ new.image.url }}">
+            <p>{{ new.description }}</p>
+            <p>{{ new.created }}</p>
+            <p>Ko'rishlar soni: {{ new.views }}</p>
+        </div>
+        <div class="col-lg-3">
+
+        </div>
+    </div>
+
+{% endblock %}

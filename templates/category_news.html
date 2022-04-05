@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ category.name }} {% endblock %}
+
+{% block content %}
+{{ category.name }} news
+<hr>
+
+{% for new in news %}
+    <h3>{{ new.title }}</h3>
+    <img style="width: 500px;" src="{{ new.image.url }}">
+    <p>{{ new.description }}</p>
+    <p>{{ new.created }}</p>
+    <hr>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    {% if tag %}
+        <h2>{{ tag.name }} ga oid yangiliklar</h2>
+    {% else %}
+        <h2>Barcha yangiliklar</h2>
+    {% endif %}
+    <main>
+        <div class="album py-5 bg-light">
+            <div class="container">
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    {% for new in news %}
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src="{{ new.image.url }}" class="bd-placeholder-img card-img-top" width="100%"
+                                     height="225">
+
+                                <div class="card-body">
+                                    <p class="card-text"><b><a href="{% url 'new_detail' new.slug %}">{{ new.title }}</a></b></p>
+                                    <p class="card-text">{{ new.description |truncatechars:80 }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        </div>
+                                        <small class="text-muted">{{ new.created }}</small>
+                                    </div>
+                                    <div>
+                                        {% for tag in new.tags.all %}
+                                            <a href="{% url 'tag_news' tag.slug %}">#{{ tag.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
