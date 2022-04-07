@@ -5,7 +5,10 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-3">
-
+            {% for nt in news_top %}
+                <p><a href="{% url 'new_detail' nt.slug %}">{{ nt.title }}</a></p>
+                <p>{{ nt.views }}</p>
+            {% endfor %}
         </div>
         <div class="col-lg-6">
             <h3>{{ new.title }}</h3>
@@ -15,7 +18,12 @@
             <p>Ko'rishlar soni: {{ new.views }}</p>
         </div>
         <div class="col-lg-3">
-
+            {% for nc in news_categories %}
+                {% if nc.title != new.title %}
+                <p><a href="{% url 'new_detail' nc.slug %}">{{ nc.title }}</a></p>
+                <p>{{ nc.category.name }}</p>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 

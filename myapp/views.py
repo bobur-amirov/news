@@ -64,12 +64,16 @@ def tag_news(request, slug):
 
 def new_detail(request, slug):
     new = News.objects.get(slug=slug)
+    news_top = News.objects.all().order_by('-views')[:3]
+    news_categories = News.objects.filter(category__news=new)
 
     new.views += 1
     new.save()
 
     context = {
         'new': new,
+        'news_top':news_top,
+        'news_categories': news_categories,
     }
 
     return render(request, 'new_detail.html', context)
